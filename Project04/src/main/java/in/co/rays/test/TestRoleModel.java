@@ -8,19 +8,19 @@ import java.util.List;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.model.RoleModel;
 
-public class RoleTest {
+public class TestRoleModel {
 	
 	public static void main(String[] args) throws Exception {
-//		testAdd();
+		testAdd();
 //		testUpdate();
-		testDelete();
+//		testDelete();
 //		testSearch();
 	}
 
 	private static void testSearch() throws Exception {
 		RoleBean bean = new RoleBean();
-		bean.setName("Azam");
-		bean.setDescription("I am Azam");
+		bean.setName("Prabhakar");
+		bean.setDescription("I am Prabhakar");
 		
 		RoleModel model = new RoleModel();
 		List list = model.search(bean,0,5);
@@ -40,8 +40,8 @@ public class RoleTest {
 	private static void testUpdate() throws Exception {
 		RoleBean bean = new RoleBean();
 		bean.setId(1);
-		bean.setName("Azam");
-		bean.setDescription("I am Azam");
+		bean.setName("Prabhakar");
+		bean.setDescription("I am Prabhakar");
 		bean.setCreatedBy("B");
 		bean.setModifiedBy("Enrolled");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
@@ -54,8 +54,8 @@ public class RoleTest {
 	private static void testAdd() throws Exception{
 		RoleBean bean = new RoleBean();
 		bean.setId(1);
-		bean.setName("Azam");
-		bean.setDescription("I am Azam");
+		bean.setName("Prabhakar");
+		bean.setDescription("I am Prabhakar");
 		bean.setCreatedBy("B");
 		bean.setModifiedBy("Enrolled");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));

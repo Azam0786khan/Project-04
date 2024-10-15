@@ -4,17 +4,17 @@ import java.sql.Timestamp;
 
 public class BaseBean {
 
-	protected int id;
+	protected long id;
 	protected String createdBy;
 	protected String modifiedBy;
 	protected Timestamp createdDateTime;
 	protected Timestamp modifiedDateTime;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

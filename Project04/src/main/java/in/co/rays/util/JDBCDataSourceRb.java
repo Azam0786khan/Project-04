@@ -7,15 +7,15 @@ import java.util.ResourceBundle;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-public class JdbcDataSourceByRb {
+public class JDBCDataSourceRb {
 
-	private static JdbcDataSourceByRb jds = null;
+	private static JDBCDataSourceRb jds = null;
 
 	private ComboPooledDataSource cpds = null;
 	
 	ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.bundle.system");
 
-	private JdbcDataSourceByRb() {
+	private JDBCDataSourceRb() {
 		try {
 			cpds = new ComboPooledDataSource();
 			cpds.setDriverClass(rb.getString("driver"));
@@ -30,9 +30,9 @@ public class JdbcDataSourceByRb {
 		}
 	}
 
-	public static JdbcDataSourceByRb getInstance() {
+	public static JDBCDataSourceRb getInstance() {
 		if (jds == null) {
-			jds = new JdbcDataSourceByRb();
+			jds = new JDBCDataSourceRb();
 		}
 		return jds;
 
