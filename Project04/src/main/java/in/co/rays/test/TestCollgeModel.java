@@ -11,24 +11,24 @@ import in.co.rays.model.CollegeModel;
 public class TestCollgeModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
 		// testFindByName();
-		testSearch();
+		//testSearch();
 	}
 
 	public static void testAdd() throws Exception {
 
 		CollegeBean bean = new CollegeBean();
-		bean.setName("test");
-		bean.setAddress("indore");
+		bean.setName("azam");
+		bean.setAddress("Indore");
 		bean.setState("MP");
-		bean.setCity("indore");
-		bean.setPhoneNo("9898989898");
-		bean.setCreatedBy("admin@gmail.com");
-		bean.setModifiedBy("admin@gmail.com");
+		bean.setCity("Indore");
+		bean.setPhoneNo("1234567890");
+		bean.setCreatedBy("ak@gmail.com");
+		bean.setModifiedBy("ak@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDateTime(new Timestamp(new Date().getTime()));
 
