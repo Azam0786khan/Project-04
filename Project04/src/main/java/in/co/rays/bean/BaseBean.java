@@ -2,13 +2,13 @@ package in.co.rays.bean;
 
 import java.sql.Timestamp;
 
-public class BaseBean {
+public abstract class BaseBean implements DropdownListBean {
 
 	protected long id;
 	protected String createdBy;
 	protected String modifiedBy;
-	protected Timestamp createdDateTime;
-	protected Timestamp modifiedDateTime;
+	protected Timestamp CreatedDateTime;
+	protected Timestamp ModifiedDateTime;
 
 	public long getId() {
 		return id;
@@ -35,19 +35,18 @@ public class BaseBean {
 	}
 
 	public Timestamp getCreatedDateTime() {
-		return createdDateTime;
+		return CreatedDateTime;
 	}
 
-	public void setCreatedDateTime(Timestamp createdDateTime) {
-		this.createdDateTime = createdDateTime;
+	public void setCreatedDateTime(Timestamp createdDatetime) {
+		this.CreatedDateTime = createdDatetime;
 	}
 
 	public Timestamp getModifiedDateTime() {
-		return modifiedDateTime;
+		return ModifiedDateTime;
 	}
 
-	public void setModifiedDateTime(Timestamp modifiedDateTime) {
-		this.modifiedDateTime = modifiedDateTime;
+	public void setModifiedDateTime(Timestamp modifiedDatetime) {
+		this.ModifiedDateTime = modifiedDatetime;
 	}
-
 }
