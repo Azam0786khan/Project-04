@@ -11,12 +11,12 @@ import in.co.rays.model.SubjectModel;
 public class TestSubjectModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
 		// testFindByName();
-		testSearch();
+		// testSearch();
 	}
 
 	public static void testAdd() throws Exception {
@@ -24,7 +24,7 @@ public class TestSubjectModel {
 		SubjectBean bean = new SubjectBean();
 
 		bean.setName("Mechanical");
-		bean.setCourseId(3);
+		bean.setCourseId(1);
 		bean.setDescription("Mechanical");
 		bean.setCreatedBy("admin@gmail.com");
 		bean.setModifiedBy("admin@gmail.com");

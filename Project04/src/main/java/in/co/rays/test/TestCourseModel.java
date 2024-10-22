@@ -11,12 +11,12 @@ import in.co.rays.model.CourseModel;
 public class TestCourseModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
 		// testFindByName();
-		testSearch();
+		//testSearch();
 	}
 
 	public static void testAdd() throws Exception {

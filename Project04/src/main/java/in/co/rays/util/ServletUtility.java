@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.co.rays.bean.BaseBean;
 import in.co.rays.ctl.BaseCtl;
 
-public class ServletUtility {
+public class ServletUtility  {
 
 	public static void forward(String page, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
