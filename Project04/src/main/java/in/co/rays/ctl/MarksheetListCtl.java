@@ -34,7 +34,7 @@ public class MarksheetListCtl extends BaseCtl {
 	protected BaseBean populateBean(HttpServletRequest request) {
 		MarksheetBean bean = new MarksheetBean();
 		bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
-		bean.setStudentId(DataUtility.getLong(request.getParameter("studentId")));
+		bean.setName(DataUtility.getString(request.getParameter("name")));
 		populateDTO(bean, request);
 		return bean;
 	}
@@ -86,7 +86,7 @@ public class MarksheetListCtl extends BaseCtl {
 			} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
 				pageNo--;
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.USER_CTL, request, response);
+				ServletUtility.redirect(ORSView.MARKSHEET_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
 				pageNo = 1;
@@ -99,7 +99,7 @@ public class MarksheetListCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
 			} else if (OP_RESET.equalsIgnoreCase(op) || OP_BACK.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
+				ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
 				return;
 			}
 

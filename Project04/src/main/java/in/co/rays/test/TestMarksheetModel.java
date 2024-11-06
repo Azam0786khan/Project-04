@@ -22,11 +22,11 @@ public class TestMarksheetModel {
 	public static void testAdd() throws Exception {
 
 		MarksheetBean bean = new MarksheetBean();
-		bean.setRollNo("BE101");
-		bean.setStudentId(1);
-		bean.setPhysics(55);
-		bean.setChemistry(66);
-		bean.setMaths(77);
+		bean.setRollNo("BE102");
+		bean.setStudentId(2);
+		bean.setPhysics(44);
+		bean.setChemistry(88);
+		bean.setMaths(61);
 		bean.setCreatedBy("azam@gmail.com");
 		bean.setModifiedBy("azam@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));

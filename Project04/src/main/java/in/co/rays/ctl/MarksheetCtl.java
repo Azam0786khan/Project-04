@@ -86,8 +86,22 @@ public class MarksheetCtl extends BaseCtl {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ServletUtility.forward(getView(), req, resp);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String op = DataUtility.getString(request.getParameter("operation"));
+		Long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (id > 0) {
+
+			MarksheetModel model = new MarksheetModel();
+
+			try {
+				MarksheetBean bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		ServletUtility.forward(getView(), request, response);
 	}
 
 	@Override
