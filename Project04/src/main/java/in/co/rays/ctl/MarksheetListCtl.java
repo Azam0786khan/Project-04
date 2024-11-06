@@ -34,6 +34,7 @@ public class MarksheetListCtl extends BaseCtl {
 	protected BaseBean populateBean(HttpServletRequest request) {
 		MarksheetBean bean = new MarksheetBean();
 		bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
+		bean.setId(DataUtility.getLong(request.getParameter("rollNoId")));
 		bean.setName(DataUtility.getString(request.getParameter("name")));
 		populateDTO(bean, request);
 		return bean;

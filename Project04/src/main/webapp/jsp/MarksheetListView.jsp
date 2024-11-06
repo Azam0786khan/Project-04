@@ -48,7 +48,7 @@
 					type="text" name="name"
 					value="<%=ServletUtility.getParameter("name", request)%>">&nbsp;
 					
-				<label><b>Roll No :</b></label> <%=HTMLUtility.getList("rollNo", DataUtility.getStringData(bean.getRollNo()), roleNoList)%>&nbsp;
+				<label><b>Roll No :</b></label> <%=HTMLUtility.getList("rollNoId", DataUtility.getStringData(bean.getRollNo()), roleNoList)%>&nbsp;
 				
 					<input type="submit" name="operation"
 					value="<%=MarksheetListCtl.OP_SEARCH%>"> &nbsp; 

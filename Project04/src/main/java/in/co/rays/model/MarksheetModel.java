@@ -191,6 +191,10 @@ public class MarksheetModel {
 			if (bean.getName() != null && bean.getName().length() > 0) {
 				sql.append(" and name like '" + bean.getName() + "%'");
 			}
+			
+			if ( bean.getId() > 0) {
+				sql.append(" and id like '" + bean.getId() + "%'");
+			}
 		}
 
 		if (pageSize > 0) {
