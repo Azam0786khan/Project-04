@@ -12,6 +12,7 @@
 </head>
 <body>
 	<form action="<%=ORSView.ROLE_CTL%>" method="post">
+	<%@ include file="Header.jsp"%>
 
       <jsp:useBean id="bean" class="in.co.rays.bean.RoleBean"
 			scope="request"></jsp:useBean>
@@ -41,5 +42,6 @@
 			</table>
 		</div>
 	</form>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>

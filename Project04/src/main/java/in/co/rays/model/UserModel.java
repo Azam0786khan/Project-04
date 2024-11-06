@@ -50,9 +50,8 @@ public class UserModel {
 	public void update(UserBean bean) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		PreparedStatement psmt = con.prepareStatement(
-				"update st_user set first_name = ?, last_name = ?, login = ?, password = ?, dob = ?, mobile_no = ? role_id = ?, gender = ? created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
+				"update st_user set first_name = ?, last_name = ?, login = ?, password = ?, dob = ?, mobile_no = ?, role_id = ?, gender = ?,  created_by = ?, modified_by = ?, created_dateTime = ?, modified_dateTime = ? where id = ?");
 
-		
 		psmt.setString(1, bean.getFirstName());
 		psmt.setString(2, bean.getLastName());
 		psmt.setString(3, bean.getLogin());
@@ -65,7 +64,7 @@ public class UserModel {
 		psmt.setString(10, bean.getModifiedBy());
 		psmt.setTimestamp(11, bean.getCreatedDateTime());
 		psmt.setTimestamp(12, bean.getModifiedDateTime());
-		psmt.setLong(13, nextPk());
+		psmt.setLong(13, bean.getId());
 
 		int i = psmt.executeUpdate();
 
@@ -81,10 +80,10 @@ public class UserModel {
 
 	}
 
-	public UserBean findByPk(int id) throws Exception {
+	public UserBean findByPk(long id) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		PreparedStatement psmt = con.prepareStatement("select * from st_user where id = ?");
-		psmt.setInt(1, id);
+		psmt.setLong(1, id);
 
 		UserBean bean = null;
 		ResultSet rs = psmt.executeQuery();
@@ -106,7 +105,7 @@ public class UserModel {
 		}
 		return bean;
 	}
-	
+
 	public UserBean findByName(String name) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		PreparedStatement psmt = con.prepareStatement("select * from st_user where name = ?");
@@ -132,7 +131,7 @@ public class UserModel {
 		}
 		return bean;
 	}
-	
+
 	public List search(UserBean bean, int pageNo, int pageSize) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
@@ -181,8 +180,7 @@ public class UserModel {
 
 		return list;
 	}
-	
-	
+
 	public UserBean findByLogin(String login) throws Exception {
 
 		Connection conn = JDBCDataSourceRb.getConnection();
@@ -214,7 +212,7 @@ public class UserModel {
 		JDBCDataSourceRb.closeConnection(conn);
 		return bean;
 	}
-	
+
 	public UserBean authenticate(String loginId, String password) throws Exception {
 
 		Connection conn = JDBCDataSourceRb.getConnection();

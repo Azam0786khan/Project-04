@@ -11,7 +11,7 @@ import in.co.rays.model.UserModel;
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
@@ -23,9 +23,9 @@ public class TestUserModel {
 	public static void testAdd() throws Exception {
 
 		UserBean bean = new UserBean();
-		bean.setFirstName("Anshul");
-		bean.setLastName("Prajapati");
-		bean.setLogin("anshul@gmail.com");
+		bean.setFirstName("Azam");
+		bean.setLastName("Khan");
+		bean.setLogin("azam@gmail.com");
 		bean.setPassword("1234");
 		bean.setDob(new Date());
 		bean.setMobileNo("9998890811");

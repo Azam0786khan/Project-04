@@ -11,24 +11,24 @@ import in.co.rays.model.MarksheetModel;
 public class TestMarksheetModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
 		// testFindByRollNo();
-		testSearch();
+		//testSearch();
 	}
 
 	public static void testAdd() throws Exception {
 
 		MarksheetBean bean = new MarksheetBean();
-		bean.setRollNo("BE103");
-		bean.setStudentId(4);
-		bean.setPhysics(67);
-		bean.setChemistry(78);
+		bean.setRollNo("BE101");
+		bean.setStudentId(1);
+		bean.setPhysics(55);
+		bean.setChemistry(66);
 		bean.setMaths(77);
-		bean.setCreatedBy("admin@gmail.com");
-		bean.setModifiedBy("admin@gmail.com");
+		bean.setCreatedBy("azam@gmail.com");
+		bean.setModifiedBy("azam@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDateTime(new Timestamp(new Date().getTime()));
 

@@ -12,27 +12,27 @@ public class TestStudentModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
 		// testFindByEmail();
-		testSearch();
+		//testSearch();
 	}
 
 	public static void testAdd() throws Exception {
 
 		StudentBean bean = new StudentBean();
 
-		bean.setFirstName("test");
-		bean.setLastName("Malviya");
+		bean.setFirstName("will");
+		bean.setLastName("jacks");
 		bean.setDob(new Date());
 		bean.setGender("male");
-		bean.setMobileNo("7648880088");
-		bean.setEmail("test@gmail.com");
+		bean.setMobileNo("7648870088");
+		bean.setEmail("will@gmail.com");
 		bean.setCollegeId(3);
-		bean.setCreatedBy("admin@gmail.com");
-		bean.setModifiedBy("admin@gmail.com");
+		bean.setCreatedBy("will@gmail.com");
+		bean.setModifiedBy("will@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDateTime(new Timestamp(new Date().getTime()));
 

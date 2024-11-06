@@ -4,6 +4,7 @@ package in.co.rays.ctl;
 import java.io.IOException;
 import java.util.List;
 
+import javax.management.InvalidApplicationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.UserBean;
+import in.co.rays.exception.ApplicationException;
+import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.model.RoleModel;
+import in.co.rays.model.UserModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
@@ -19,7 +23,7 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "UserCtl", urlPatterns = { "/UserCtl" })
 public class UserCtl extends BaseCtl {
-	
+
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
@@ -92,7 +96,7 @@ public class UserCtl extends BaseCtl {
 		}
 		return pass;
 	}
-	
+
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 		UserBean bean = new UserBean();
@@ -124,13 +128,56 @@ public class UserCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+		Long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (id > 0) {
+
+			UserModel model = new UserModel();
+
+			try {
+				UserBean bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		ServletUtility.forward(getView(), request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletUtility.forward(getView(), request, response);
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		UserModel model = new UserModel();
+
+		UserBean bean = (UserBean) populateBean(request);
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+
+			try {
+				model.add(bean);
+
+				ServletUtility.setSuccessMessage("User Added Successfully..!!", request);
+				ServletUtility.forward(getView(), request, response);
+			} catch (DuplicateRecordException e) {
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setErrorMessage("login id already exist", request);
+				ServletUtility.forward(getView(), request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (OP_RESET.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.USER_CTL, request, response);
+			return;
+		}
+
 	}
 
 	@Override

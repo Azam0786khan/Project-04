@@ -11,23 +11,23 @@ import in.co.rays.model.FacultyModel;
 public class TestFacultyModel {
 
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
-		testSearch();
+		//testSearch();
 	}
 
 	public static void testAdd() throws Exception {
 
 		FacultyBean bean = new FacultyBean();
 
-		bean.setFirstName("Avnish");
-		bean.setLastName("Gupta");
+		bean.setFirstName("Azam");
+		bean.setLastName("Khan");
 		bean.setDob(new Date());
 		bean.setGender("male");
 		bean.setMobileNo("1234567890");
-		bean.setEmail("avnish@gmail.com");
+		bean.setEmail("azam@gmail.com");
 		bean.setCollegeId(1);
 		bean.setCourseId(1);
 		bean.setSubjectId(1);
@@ -44,7 +44,7 @@ public class TestFacultyModel {
 
 		FacultyModel model = new FacultyModel();
 
-		FacultyBean bean = model.findByPk(1);
+		FacultyBean bean = model.findByPk(1L);
 
 		bean.setFirstName("satyam");
 		bean.setLastName("jat");
@@ -64,7 +64,7 @@ public class TestFacultyModel {
 
 		FacultyModel model = new FacultyModel();
 
-		FacultyBean bean = model.findByPk(2);
+		FacultyBean bean = model.findByPk(2L);
 
 		if (bean != null) {
 			System.out.print(bean.getId());

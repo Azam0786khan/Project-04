@@ -21,6 +21,7 @@
 </head>
 <body>
 	<form action="<%=ORSView.USER_CTL%>" method="post">
+	<%@ include file="Header.jsp"%>
 
 		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
 			scope="request"></jsp:useBean>
@@ -129,5 +130,6 @@
 			</table>
 		</div>
 	</form>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>

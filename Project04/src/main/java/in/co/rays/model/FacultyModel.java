@@ -88,10 +88,10 @@ public class FacultyModel {
 
 	}
 
-	public FacultyBean findByPk(int id) throws Exception {
+	public FacultyBean findByPk(Long id) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		PreparedStatement psmt = con.prepareStatement("select * from st_faculty where id = ?");
-		psmt.setInt(1, id);
+		psmt.setLong(1, id);
 
 		FacultyBean bean = null;
 		ResultSet rs = psmt.executeQuery();

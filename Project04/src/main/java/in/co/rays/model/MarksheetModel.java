@@ -176,6 +176,10 @@ public class MarksheetModel {
 		JDBCDataSourceRb.closeConnection(conn);
 		return bean;
 	}
+	
+	public List list() throws Exception {
+		return search(null, 0, 0);
+	}
 
 	public List search(MarksheetBean bean, int pageNo, int pageSize) throws Exception {
 

@@ -8,7 +8,7 @@ import java.util.List;
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.model.CollegeModel;
 
-public class TestCollgeModel {
+public class TestCollegeModel {
 
 	public static void main(String[] args) throws Exception {
 		 testAdd();
