@@ -71,9 +71,11 @@
 
 		<br>
 
-		<table border="1%" style="width: 100%">
-			<tr>
-				<th><input type="checkbox"></th>
+		<table border="1" width="100%" align="center" cellpadding=7px
+			cellspacing=".2">
+			<tr style="background: skyblue">
+				<th><input type="checkbox" id="selectall"></th>
+				
 				<th>S.No.</th>
 
 				<th>Name</th>
@@ -94,7 +96,8 @@
 			%>
 			<tr align="center">
 				<td><input type="checkbox"></td>
-				<td><%=bean.getId()%></td>
+				<td><%=index++%></td>
+				
 
 				<td><%=bean.getName()%></td>
 				<td><%=bean.getAddress()%></td>

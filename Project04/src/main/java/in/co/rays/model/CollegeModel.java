@@ -158,8 +158,23 @@ public class CollegeModel {
 		StringBuffer sql = new StringBuffer("select * from st_college where 1=1");
 
 		if (bean != null) {
+			if (bean.getId() > 0) {
+				sql.append(" AND id = " + bean.getId());
+			}
 			if (bean.getName() != null && bean.getName().length() > 0) {
-				sql.append(" and first_name like '" + bean.getName() + "%'");
+				sql.append(" AND name like '" + bean.getName() + "%'");
+			}
+			if (bean.getAddress() != null && bean.getAddress().length() > 0) {
+				sql.append(" AND address like '" + bean.getAddress() + "%'");
+			}
+			if (bean.getState() != null && bean.getState().length() > 0) {
+				sql.append("AND state like'" + bean.getState() + "%'");
+			}
+			if (bean.getCity() != null && bean.getCity().length() > 0) {
+				sql.append(" AND city like '" + bean.getCity() + "%'");
+			}
+			if (bean.getPhoneNo() != null && bean.getPhoneNo().length() > 0) {
+				sql.append(" AND phone_no = " + bean.getPhoneNo());
 			}
 		}
 

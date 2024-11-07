@@ -28,7 +28,20 @@
 		<div align="center">
 
 			<h1>
-				<font color="navy">Add Student</font>
+				<font color="navy"> 
+				<%
+					if (bean != null && bean.getId() > 0) {
+				%>
+				Update
+				<%
+					} else {
+				%>
+				Add
+				<%
+					}
+				%>
+				Student
+				</font>
 			</h1>
 
 			<h3>
@@ -95,11 +108,24 @@
 				</tr>
 
 
-				<tr>
-					<th></th>
-					<td><input type="submit" name="operation"
-						value="<%=StudentCtl.OP_SAVE%>">
-				</tr>
+				 <tr>
+                    <th></th>
+                    <%
+						if (bean != null && bean.getId() > 0) {
+					%>
+					<td align="left" colspan="2">
+					<input type="submit" name="operation" value="<%=StudentCtl.OP_UPDATE%>">
+					<input type="submit" name="operation" value="<%=StudentCtl.OP_CANCEL%>">
+						<%
+							} else {
+						%>
+					<td align="left" colspan="2">
+					<input type="submit" name="operation" value="<%=StudentCtl.OP_SAVE%>">
+					<input type="submit" name="operation" value="<%=StudentCtl.OP_RESET%>">
+						<%
+							}
+						%>
+                </tr>
 			</table>
 		</div>
 	</form>

@@ -45,7 +45,7 @@ public class StudentListCtl extends BaseCtl {
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		bean.setEmail(DataUtility.getString(request.getParameter("email")));
-		bean.setCollegeId(DataUtility.getLong(request.getParameter("collegeName")));
+		bean.setCollegeId(DataUtility.getLong(request.getParameter("collegeId")));
 		populateDTO(bean, request);
 		return bean;
 	}
@@ -55,7 +55,7 @@ public class StudentListCtl extends BaseCtl {
 		List list;
 
 		int pageNo = 1;
-		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
+		int pageSize = 10;
 
 		StudentBean bean = (StudentBean) populateBean(request);
 		StudentModel model = new StudentModel();
@@ -90,7 +90,7 @@ public class StudentListCtl extends BaseCtl {
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
-		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
+		pageSize = (pageSize == 0) ? 10 : pageSize;
 
 		StudentBean bean = (StudentBean) populateBean(request);
 
@@ -136,7 +136,6 @@ public class StudentListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			return;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (list == null || list.size() == 0 && !OP_DELETE.equalsIgnoreCase(op)) {

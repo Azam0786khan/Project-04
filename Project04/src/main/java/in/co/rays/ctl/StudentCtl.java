@@ -9,11 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.bean.BaseBean;
+import in.co.rays.bean.CollegeBean;
+import in.co.rays.bean.CourseBean;
+import in.co.rays.bean.MarksheetBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.StudentBean;
 import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.model.CollegeModel;
+import in.co.rays.model.CourseModel;
+import in.co.rays.model.MarksheetModel;
 import in.co.rays.model.StudentModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
@@ -29,7 +34,7 @@ public class StudentCtl extends BaseCtl {
 		try {
 			List collegeList = model.list();
 			request.setAttribute("collegeList", collegeList);
-	  	} catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -105,35 +110,50 @@ public class StudentCtl extends BaseCtl {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String op = DataUtility.getString(request.getParameter("operation"));
-        long id = DataUtility.getLong(request.getParameter("id"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        StudentModel model = new StudentModel();
-        if (id > 0 || op != null) {
-            StudentBean bean;
-            try {
-                bean = model.findByPk(id);
-                ServletUtility.setBean(bean, request);
-            } catch (ApplicationException e) {
-                return;
+		String op = DataUtility.getString(request.getParameter("operation"));
+		long id = DataUtility.getLong(request.getParameter("id"));
+
+		StudentModel model = new StudentModel();
+		if (id > 0 || op != null) {
+			StudentBean bean;
+			try {
+				bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (ApplicationException e) {
+				return;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }
+		}
 		ServletUtility.forward(getView(), request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String op = DataUtility.getString(req.getParameter("operation"));
-		
+
+		System.out.println(req.getParameter("operation"));
+		StudentModel model = new StudentModel();
+		CollegeModel collegeModel = new CollegeModel();
 		if (OP_SAVE.equalsIgnoreCase(op)) {
 			StudentBean bean = (StudentBean) populateBean(req);
-			ServletUtility.setBean(bean, req);
-			ServletUtility.forward(getView(), req, resp);
+			
+			try {
+				CollegeBean collegeBean = collegeModel.findByPk(bean.getCollegeId());
+				bean.setCollegeName(collegeBean.getName());
+				model.add(bean);
+				ServletUtility.setSuccessMessage("Data Added successfully", req);
+				ServletUtility.setBean(bean, req);
+				ServletUtility.forward(getView(), req, resp);
+			} catch (Exception e) {
+				ServletUtility.setErrorMessage(e.getMessage(), req);
+				ServletUtility.setBean(bean, req);
+				ServletUtility.forward(getView(), req, resp);
+			}
 		}
 	}
 

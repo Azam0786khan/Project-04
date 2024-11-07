@@ -39,10 +39,8 @@ public class MarksheetCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("rollNo"))) {
 			request.setAttribute("rollNo", PropertyReader.getValue("error.require", "RollNo"));
 			pass = false;
-		} else if (DataValidator.isRollNo(request.getParameter("rollNo"))) {
-			request.setAttribute("rollNo", "Inavlid RollNo");
-			pass = false;
-		}
+		} 
+		
 		if (DataValidator.isNull(request.getParameter("studentId"))) {
 			request.setAttribute("studentId", PropertyReader.getValue("error.require", "Name"));
 			pass = false;

@@ -20,8 +20,6 @@
 			<h1>
 				<font color="navy">Marksheet List</font>
 			</h1>
-		</div>
-		<div align="center" style="height: 15px; margin-bottom: 12px">
 			<h3>
 				<font color="red"><%=ServletUtility.getErrorMessage(request)%></font>
 			</h3>
@@ -30,38 +28,37 @@
 			</h3>
 		</div>
 		<%
-            int pageNo = ServletUtility.getPageNo(request);
-            int pageSize = ServletUtility.getPageSize(request);
-            int index = ((pageNo - 1) * pageSize) + 1;
-            int nextPageSize = (request.getAttribute("nextListSize") != null) ? DataUtility.getInt(request.getAttribute("nextListSize").toString()) : 0;
-            List roleNoList = (List) request.getAttribute("rollNo");
-            List list = ServletUtility.getList(request);
-            Iterator it = list.iterator();
-            if (list.size() != 0) {
-        %>
+		int pageNo = ServletUtility.getPageNo(request);
+		int pageSize = ServletUtility.getPageSize(request);
+		int index = ((pageNo - 1) * pageSize) + 1;
+		int nextPageSize = (request.getAttribute("nextListSize") != null)
+				? DataUtility.getInt(request.getAttribute("nextListSize").toString())
+				: 0;
+		List roleNoList = (List) request.getAttribute("rollNo");
+		List list = ServletUtility.getList(request);
+		Iterator it = list.iterator();
+		if (list.size() != 0) {
+		%>
 		<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
 			type="hidden" name="pageSize" value="<%=pageSize%>">
 		<table style="width: 100%">
 			<tr>
-				<td align="center"><label><b>Name :</b></label> 
-				<input
+				<td align="center"><label><b>Name :</b></label> <input
 					type="text" name="name"
 					value="<%=ServletUtility.getParameter("name", request)%>">&nbsp;
-					
-				<label><b>Roll No :</b></label> <%=HTMLUtility.getList("rollNoId", DataUtility.getStringData(bean.getRollNo()), roleNoList)%>&nbsp;
-				
+
+					<label><b>Roll No :</b></label> <%=HTMLUtility.getList("rollNoId", DataUtility.getStringData(bean.getRollNo()), roleNoList)%>&nbsp;
+
 					<input type="submit" name="operation"
-					value="<%=MarksheetListCtl.OP_SEARCH%>"> &nbsp; 
-					
-					<input
+					value="<%=MarksheetListCtl.OP_SEARCH%>"> &nbsp; <input
 					type="submit" name="operation"
-					value="<%=MarksheetListCtl.OP_RESET%>">
-				</td>
+					value="<%=MarksheetListCtl.OP_RESET%>"></td>
 			</tr>
 		</table>
 		<br>
-		<table border="1%" style="width: 100%">
-			<tr style="background-color: lavender; color: black;">
+		<table border="1" width="100%" align="center" cellpadding=7px
+			cellspacing=".2">
+			<tr style="background: skyblue">
 				<th><input type="checkbox" id="selectall"></th>
 				<th>S.No.</th>
 				<th>RollNo</th>
@@ -69,14 +66,17 @@
 				<th>Physics</th>
 				<th>Chemistry</th>
 				<th>Maths</th>
+				<th>Total</th>
+				<th>Percentage</th>
+				<th>Result</th>
 				<th>Edit</th>
 			</tr>
 			<%
-            while (it.hasNext()) {
-                bean = (MarksheetBean) it.next();
-                MarksheetModel model = new MarksheetModel();
-                MarksheetBean marksheetBean = model.findByPk(bean.getStudentId());
-            %>
+			while (it.hasNext()) {
+				bean = (MarksheetBean) it.next();
+				MarksheetModel model = new MarksheetModel();
+				MarksheetBean marksheetBean = model.findByPk(bean.getStudentId());
+			%>
 			<tr align="center">
 				<td><input type="checkbox" class="case" name="ids"
 					value="<%=bean.getId()%>"></td>
@@ -86,11 +86,22 @@
 				<td><%=bean.getPhysics()%></td>
 				<td><%=bean.getChemistry()%></td>
 				<td><%=bean.getMaths()%></td>
+				<td><%=bean.getPhysics() + bean.getChemistry() + bean.getMaths()%></td>
+				<td><%=String.format("%.2f", ((bean.getPhysics() + bean.getChemistry() + bean.getMaths()) / 3.0)) + " %"%></td>
+				<td>
+					<%
+					if (bean.getPhysics() >= 33 && bean.getChemistry() >= 33 && bean.getMaths() >= 33) {
+					%><span style="color: green;"> Pass </span> <%
+ } else {
+ %> <span style="color: red"> Fail</span> <%
+ }
+ %>
+				</td>
 				<td><a href="<%=ORSView.MARKSHEET_CTL%>?id=<%=bean.getId()%>">edit</a></td>
 			</tr>
 			<%
-            }
-            %>
+			}
+			%>
 		</table>
 		<br>
 
@@ -109,9 +120,9 @@
 			</tr>
 		</table>
 		<%
-				}
-				if (list.size() == 0) {
-			%>
+		}
+		if (list.size() == 0) {
+		%>
 		<br>
 		<table>
 			<tr>
@@ -120,8 +131,8 @@
 			</tr>
 		</table>
 		<%
-				}
-			%>
+		}
+		%>
 	</form>
 
 	<%@ include file="Footer.jsp"%>

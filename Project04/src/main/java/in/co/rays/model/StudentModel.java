@@ -150,11 +150,19 @@ public class StudentModel {
 		}
 		if (bean != null) {
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
-				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+				sql.append(" and first_name like '" + bean.getFirstName() + "%'");
 			}
 
 			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
-				sql.append(" and lastName like '" + bean.getLastName() + "%'");
+				sql.append(" and last_name like '" + bean.getLastName() + "%'");
+			}
+			
+			if (bean.getEmail() != null && bean.getEmail().length() > 0) {
+				sql.append(" and email like '" + bean.getEmail()+ "%'");
+			}
+			
+			if (bean.getCollegeId() > 0) {
+				sql.append(" and college_id like '" + bean.getCollegeId()+ "%'");
 			}
 		}
 

@@ -9,13 +9,7 @@
 	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-<link rel="icon" type="image/png"
-	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16*16" />
 <title>Student List</title>
-
-<script src="<%=ORSView.APP_CONTEXT%>/js/jquery.min.js""></script>
-<script src="<%=ORSView.APP_CONTEXT%>/js/Checkbox11.js"></script>
-
 
 </head>
 <body>
@@ -54,17 +48,18 @@
 
 			<table width="100%" align="center">
 				<tr>
-					<td align="right"><label> First Name:</label> <input
-						type="text" name="firstName" placeholder="Enter Student Name"
-						Size="25"
-						value="<%=ServletUtility.getParameter("firstName", request)%>">
-						&nbsp; <label>Last Name:</label> <input type="text"
+					<td align="right">
+					<label> First Name:</label> 
+					<input type="text" name="firstName" placeholder="Enter Student Name" Size="25"
+						value="<%=ServletUtility.getParameter("firstName", request)%>">&nbsp; 
+						
+						<label>Last Name:</label> <input type="text"
 						name="lastName" placeholder="Enter last Name" Size="25"
 						value="<%=ServletUtility.getParameter("lastName", request)%>">
 						&nbsp; <label>EmailId:</label> <input type="text" name="email"
 						placeholder="Enter Email_id" Size="25"
 						value="<%=ServletUtility.getParameter("email", request)%>">
-						&nbsp; <label>College Name:</label> <%=HTMLUtility.getList("collegename", String.valueOf(bean.getCollegeId()), clist)%>
+						&nbsp; <label>College Name:</label> <%=HTMLUtility.getList("collegeId", String.valueOf(bean.getCollegeId()), clist)%>
 						&nbsp; <input type="submit" name="operation"
 						value="<%=StudentListCtl.OP_SEARCH%>"> <input
 						type="submit" name="operation"
@@ -76,15 +71,15 @@
 
 			<table border="1" width="100%" align="center" cellpadding=6px
 				cellspacing=".2">
-				<tr>
-					<th><input type="checkbox" id="select_all" name="select"></th>
+				<tr style="background: skyblue">
+					<th><input type="checkbox" id="selectall" name="select"></th>
 					<th>S No.</th>
-					<th>College.</th>
-					<th>First Name.</th>
-					<th>Last Name.</th>
-					<th>Date Of Birth.</th>
-					<th>Mobile No.</th>
-					<th>Email_Id.</th>
+					<th>College</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Date Of Birth</th>
+					<th>Mobile No</th>
+					<th>Email Id</th>
 					<th>Edit</th>
 				</tr>
 
@@ -93,10 +88,8 @@
 					bean = it.next();
 				%>
 
-
-
 				<tr align="center">
-					<td><input type="checkbox" class="checkbox" name="ids"
+					<td><input type="checkbox" class="case" name="ids"
 						value="<%=bean.getId()%>">
 					<td><%=index++%></td>
 					<td><%=bean.getCollegeName()%></td>
@@ -163,12 +156,6 @@
 			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
 				type="hidden" name="pageSize" value="<%=pageSize%>">
 	</form>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
 	</center>
 
 	<%@include file="Footer.jsp"%>

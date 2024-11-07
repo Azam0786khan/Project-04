@@ -24,15 +24,15 @@ public class TestStudentModel {
 
 		StudentBean bean = new StudentBean();
 
-		bean.setFirstName("will");
-		bean.setLastName("jacks");
+		bean.setFirstName("peter");
+		bean.setLastName("williams");
 		bean.setDob(new Date());
 		bean.setGender("male");
-		bean.setMobileNo("7648870088");
-		bean.setEmail("will@gmail.com");
+		bean.setMobileNo("7648870546");
+		bean.setEmail("peter@gmail.com");
 		bean.setCollegeId(3);
-		bean.setCreatedBy("will@gmail.com");
-		bean.setModifiedBy("will@gmail.com");
+		bean.setCreatedBy("peter@gmail.com");
+		bean.setModifiedBy("peter@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDateTime(new Timestamp(new Date().getTime()));
 
