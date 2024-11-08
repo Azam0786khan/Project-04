@@ -30,6 +30,20 @@ public class DataValidator {
 			return false;
 		}
 	}
+	
+	public static boolean isDouble(String val) {
+
+		if (isNotNull(val)) {
+			try {
+				Double.parseDouble(val);
+				return true;
+			} catch (NumberFormatException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	public static boolean isLong(String val) {
 		if (isNotNull(val)) {

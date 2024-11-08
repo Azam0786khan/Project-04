@@ -37,6 +37,14 @@ public class DataUtility {
 			return 0;
 		}
 	}
+	
+	public static double getDouble(String val) {
+		if (DataValidator.isDouble(val)) {
+			return Double.parseDouble(val);
+		} else {
+			return 0;
+		}
+	}
 
 	public static long getLong(String val) {
 		if (DataValidator.isLong(val)) {
