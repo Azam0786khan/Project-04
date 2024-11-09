@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.OrderBean;
+import in.co.rays.exception.ApplicationException;
 import in.co.rays.model.OrderModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "OrderListCtl", urlPatterns = { "/OrderListCtl" })
 public class OrderListCtl extends BaseCtl {
-	
-	
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
@@ -100,12 +99,20 @@ public class OrderListCtl extends BaseCtl {
 				for (String id : ids) {
 					try {
 						model.delete(DataUtility.getInt(id));
+						ServletUtility.setSuccessMessage("Data Successfully Deleted", request);
 
-					} catch (Exception e) {
+					} catch (ApplicationException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						return;
 					}
-					ServletUtility.setSuccessMessage("Data Successfully Deleted", request);
+
+					catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+
+					}
+
 				}
 			} else {
 				ServletUtility.setErrorMessage("Select Atleast One Record", request);

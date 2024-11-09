@@ -27,7 +27,13 @@ public class LoginCtl extends BaseCtl {
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+
+		String op = DataUtility.getString(request.getParameter("operation"));
 		boolean pass = true;
+
+		if (OP_LOG_OUT.equalsIgnoreCase(op) || OP_SIGN_UP.equalsIgnoreCase(op)) {
+			return pass;
+		}
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
 			request.setAttribute("login", PropertyReader.getValue("error.require", "Login Id"));
@@ -56,27 +62,28 @@ public class LoginCtl extends BaseCtl {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String op = DataUtility.getString(request.getParameter("operation"));
-		if(OP_LOG_OUT.equalsIgnoreCase(op)) {
+		if (OP_LOG_OUT.equalsIgnoreCase(op)) {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			ServletUtility.setSuccessMessage("Logout Successfully..!", request);
 		}
 
-		
 		ServletUtility.forward(getView(), request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		UserModel model = new UserModel();
 		RoleModel rolemodel = new RoleModel();
-		
+
 		HttpSession session = request.getSession();
 		if (OP_SIGN_IN.equalsIgnoreCase(op)) {
 
