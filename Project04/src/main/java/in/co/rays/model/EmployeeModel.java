@@ -35,7 +35,7 @@ public class EmployeeModel {
 		int pk = nextPk();
 
 		Connection conn = JDBCDataSourceRb.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("select into st_employee values(?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement pstmt = conn.prepareStatement("insert into st_employee values(?,?,?,?,?,?,?,?,?,?)");
 
 		pstmt.setLong(1, pk);
 		pstmt.setString(2, bean.getFullName());
@@ -82,7 +82,7 @@ public class EmployeeModel {
 	public void delete(long id) throws Exception {
 		Connection conn = JDBCDataSourceRb.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("select from st_employee where id=?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_employee where id=?");
 
 		pstmt.setLong(1, id);
 
@@ -133,10 +133,10 @@ public class EmployeeModel {
 				sql.append(" and id =" + bean.getId());
 			}
 			if(bean.getFullName() != null && bean.getFullName().length() > 0) {
-				sql.append(" and fullName like '" + bean.getFullName() + "%'");
+				sql.append(" and full_name like '" + bean.getFullName() + "%'");
 			}
 			if(bean.getUserName() != null && bean.getUserName().length() > 0) {
-				sql.append(" and username like '" + bean.getUserName() + "%'");
+				sql.append(" and user_name like '" + bean.getUserName() + "%'");
 			}
 			if(bean.getPassword() != null && bean.getPassword().length() > 0) {
 				sql.append(" and password like '" + bean.getPassword() + "%'");
@@ -145,7 +145,7 @@ public class EmployeeModel {
 				sql.append("and dob like '" + bean.getDob() + "%'");
 			}
 			if (bean.getPhoneNo() > 0) {
-				sql.append(" and phoneNo =" + bean.getPhoneNo());
+				sql.append(" and phone_no =" + bean.getPhoneNo());
 
 			}
 			
